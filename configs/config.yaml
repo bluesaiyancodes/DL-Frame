@@ -1,4 +1,30 @@
 # configs/config.yaml
+
+# Hydra configs
+hydra:
+  job_logging:
+    version: 1
+    disable_existing_loggers: false
+    formatters:
+      simple:
+        format: "%(asctime)s [%(levelname)s] %(name)s: %(message)s"
+    handlers:
+      file:
+        class: logging.FileHandler
+        level: INFO
+        formatter: simple
+        filename: ${hydra.runtime.output_dir}/${hydra.job.name}.log
+    root:
+      level: INFO
+      handlers: [file]
+
+# ---------------------------------------------------------------------------------------------------
+# Main configs
+dataset:
+  name: "cifar10"
+  path: "./data"
+  saved_images: true
+
 model:
   name: "resnet18"
   pretrained: true
@@ -8,11 +34,5 @@ training:
   batch_size: 32
   learning_rate: 0.001
 
-dataset:
-  name: "cifar10"
-  root: "./data"
-  download: true
-
-# You could also define logging or other resources here
-logging:
-  level: "INFO"
+other:
+  log_print: false

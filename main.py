@@ -1,24 +1,26 @@
 # main.py
 import hydra
 from omegaconf import DictConfig, OmegaConf
+import logging
+
+from utils.conutils import log_printer
+
 
 @hydra.main(version_base=None, config_path="configs", config_name="config")
 def main(cfg: DictConfig):
-    # Print the entire configuration
-    print("Configuration:\n", OmegaConf.to_yaml(cfg))
+    # check log printing
+    if cfg.other.log_print:
+        console_handler = log_printer()
+        logging.getLogger().addHandler(console_handler)
 
-    # Access specific configurations
-    print("Model name:", cfg.model.name)
-    print("Pretrained:", cfg.model.pretrained)
-    print("Training epochs:", cfg.training.epochs)
-    print("Dataset name:", cfg.dataset.name)
+    # Obtain a module-level logger
+    logger = logging.getLogger(__name__)
 
-    # Here you would typically instantiate your model, dataset, and training loop based on the config:
-    # Example (pseudocode):
-    # model = build_model(cfg.model.name, pretrained=cfg.model.pretrained)
-    # train_loader, val_loader = get_dataloaders(cfg.dataset.root, cfg.training.batch_size)
-    # trainer = Trainer(epochs=cfg.training.epochs, lr=cfg.training.learning_rate)
-    # trainer.train(model, train_loader, val_loader)
+    print(f"Selected Dataset - {cfg.dataset.name}, see the config/log file for more details.")
+    # log the configuration
+    logger.info("Experiment Configuration:\n%s", OmegaConf.to_yaml(cfg))  
+    
+    
 
 if __name__ == "__main__":
     main()

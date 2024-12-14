@@ -24,4 +24,4 @@ contains files related to various configurations
 
 4. other
 
-    `log_print` → true if you want to print the logs to the console output. Default log level is set to `logging.CRITICAL`.
+    `log_print` → true if you want to print the logs to the console output. 

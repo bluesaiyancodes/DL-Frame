@@ -1,0 +1,13 @@
+[project]
+name = "nuclei_panoptic"
+version = "0.1.0"
+description = "Nuclei Panoptic Segmentation Project"
+authors = [{name = "Bishal Swain", email = "blue.bishal@rocketmail.com"}]
+dynamic = ["dependencies"]
+
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]

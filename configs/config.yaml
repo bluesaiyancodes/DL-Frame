@@ -1,0 +1,18 @@
+# configs/config.yaml
+model:
+  name: "resnet18"
+  pretrained: true
+
+training:
+  epochs: 10
+  batch_size: 32
+  learning_rate: 0.001
+
+dataset:
+  name: "cifar10"
+  root: "./data"
+  download: true
+
+# You could also define logging or other resources here
+logging:
+  level: "INFO"

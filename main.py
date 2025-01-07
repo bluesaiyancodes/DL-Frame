@@ -20,8 +20,8 @@ def main(config: DictConfig):
     # log the configuration
     logger.info("Experiment Configuration:\n%s", OmegaConf.to_yaml(config))  
     hydra_cfg = hydra.core.hydra_config.HydraConfig.get()
-    out_dir = hydra_cfg['runtime']['output_dir']
-    print(f"Experiment output directory: {out_dir}")
+    exp_dir = hydra_cfg['runtime']['output_dir']
+    print(f"Experiment output directory: {exp_dir}")
     
     
 

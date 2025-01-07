@@ -19,6 +19,9 @@ def main(cfg: DictConfig):
     print(f"Selected Dataset - {cfg.dataset.name}, see the config/log file for more details.")
     # log the configuration
     logger.info("Experiment Configuration:\n%s", OmegaConf.to_yaml(cfg))  
+    hydra_cfg = hydra.core.hydra_config.HydraConfig.get()
+    out_dir = hydra_cfg['runtime']['output_dir']
+    print(f"Experiment output directory: {out_dir}")
     
     
 

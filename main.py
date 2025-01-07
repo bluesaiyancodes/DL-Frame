@@ -3,14 +3,14 @@ import hydra
 from omegaconf import DictConfig, OmegaConf
 import logging
 
-from src.utils.conutils import log_printer
+import src.utils.conutils as utils 
 
 
 @hydra.main(version_base=None, config_path="configs", config_name="config")
 def main(cfg: DictConfig):
     # check log printing
     if cfg.other.log_print:
-        console_handler = log_printer()
+        console_handler = utils.log_printer()
         logging.getLogger().addHandler(console_handler)
 
     # Obtain a module-level logger
